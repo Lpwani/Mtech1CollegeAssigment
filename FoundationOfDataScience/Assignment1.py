@@ -1,14 +1,15 @@
 import re
-text_data = "It was November, Although it was not yet late, the sky was dark when I turned into Laundress Passage. Father had finished for the day, switched off the shop lights and closed the shutters; but so I would not come home to darkness he had left on the light over the stairs to the flat. Through the glass in the door it cast a foolscap rectangle of paleness onto the wet pavement, and it was while I was standing in that rectangle, about to turn my key in the door, that I first saw the letter. Another white rectangle, it was on the fifth step from the bottom, where I couldn't miss it. I closed the door and put the shop key in its usual place behind Bailey's Advanced Principles of Geometry. Poor Bailey. No one has wanted his fat gray book for thirty years. Sometimes I wonder what he makes of his role as guardian of the bookshop keys. I don't suppose it's the destiny he had in mind for the masterwork that he spent two decades writing. A letter. For me. That was something of an event. The crisp-cornered envelope, puffed up with its thickly folded contents, was addressed in a hand that must have given the postman a certain amount of trouble. Although the style of the writing was old-fashioned, with its heavily embellished capitals and curly flourishes, my first impression was that it had been written by a child. The letters seemed untrained. Their uneven strokes either faded into nothing or were heavily etched into the paper. There was no sense of flow in the letters that spelled out my name. Each had been undertaken separately -- M A R G A R E T L E A -- as a new and daunting enterprise. But I knew no children. That is when I thought, It is the hand of an invalid. It gave me a queer feeling. Yesterday or the day before, while I had been going about my business, quietly and in private, some unknown person -- some stranger -- had gone to the trouble of marking my name onto this envelope. Who was it who had had his mind's eye on me while I hadn't suspected a thing? Still in my coat and hat, I sank onto the stair to read the letter. (I never read without making sure I am in a secure position. I have been like this ever since the age of seven when, sitting on a high wall and reading The Water Babies, I was so seduced by the descriptions of underwater life that I unconsciously relaxed my muscles. Instead of being held buoyant by the water that so vividly surrounded me in my mind, I plummeted to the ground and knocked myself out. I can still feel the scar under my fringe now. Reading can be dangerous.)"
+text_data = "Chess is a board game for two players. It is an abstract strategy game that involves no hidden information and no elements of chance. It is played on a square board consisting of 64 squares arranged in an 8×8 grid."
 
-
+#It was November, Although it was not yet late, the sky was dark when I turned into Laundress Passage. Father had finished for the day, switched off the shop lights and closed the shutters; but so I would not come home to darkness he had left on the light over the stairs to the flat. Through the glass in the door it cast a foolscap rectangle of paleness onto the wet pavement, and it was while I was standing in that rectangle, about to turn my key in the door, that I first saw the letter. Another white rectangle, it was on the fifth step from the bottom, where I couldn't miss it. I closed the door and put the shop key in its usual place behind Bailey's Advanced Principles of Geometry. Poor Bailey. No one has wanted his fat gray book for thirty years. Sometimes I wonder what he makes of his role as guardian of the bookshop keys. I don't suppose it's the destiny he had in mind for the masterwork that he spent two decades writing. A letter. For me. That was something of an event. The crisp-cornered envelope, puffed up with its thickly folded contents, was addressed in a hand that must have given the postman a certain amount of trouble. Although the style of the writing was old-fashioned, with its heavily embellished capitals and curly flourishes, my first impression was that it had been written by a child. The letters seemed untrained. Their uneven strokes either faded into nothing or were heavily etched into the paper. There was no sense of flow in the letters that spelled out my name. Each had been undertaken separately -- M A R G A R E T L E A -- as a new and daunting enterprise. But I knew no children. That is when I thought, It is the hand of an invalid. It gave me a queer feeling. Yesterday or the day before, while I had been going about my business, quietly and in private, some unknown person -- some stranger -- had gone to the trouble of marking my name onto this envelope. Who was it who had had his mind's eye on me while I hadn't suspected a thing? Still in my coat and hat, I sank onto the stair to read the letter. (I never read without making sure I am in a secure position. I have been like this ever since the age of seven when, sitting on a high wall and reading The Water Babies, I was so seduced by the descriptions of underwater life that I unconsciously relaxed my muscles. Instead of being held buoyant by the water that so vividly surrounded me in my mind, I plummeted to the ground and knocked myself out. I can still feel the scar under my fringe now. Reading can be dangerous.)
 
 # 1) Number of tokens
 
 
 # tokens = text_data.split()
 
-tokens = re.split(r"[\[\],.?\(\)\- ]",text_data)
+tokens = re.split(r" +|([\[\],.?\(\)])",text_data)     
+
 
 # Remove empty tokens if any
 # tokens = [t for t in tokens if t]        
@@ -24,6 +25,8 @@ for t in tokens:
 # print(count)
 # print(len(tokens))
 
+
+# print(pcsTokens)
 print("No of Tokens:",len(pcsTokens))      # printed length of tokens
 
 
@@ -33,7 +36,7 @@ print("No of Tokens:",len(pcsTokens))      # printed length of tokens
 
 Sentence = re.split(r"[.?!;()] ",text_data)
 
-print(Sentence)
+# print(Sentence)
 
 print("No of Sentences:",len(Sentence))
 
@@ -42,7 +45,11 @@ print("No of Sentences:",len(Sentence))
 # 3) Number of Words
 
 
-words = re.split(" ",text_data)
+words = re.split(r"[ .]",text_data)
+
+words = [t for t in words if t]
+
+# print(words)
 
 print("No of words:",len(words))
 
@@ -54,7 +61,9 @@ print("No of words:",len(words))
 char = re.split(r"",text_data)
 char = [t for t in char if (t)]
 
-print("No of words:",len(char))
+# print(char)
+
+print("No of characters:",len(char))
 
 
 
@@ -70,5 +79,5 @@ for i in range(len(Sentence)):
     if maxLen < len(Sentence[i]):
         maxLen = len(Sentence[i])
 
-print(minLen)
-print(maxLen)
+print("Minimum Length of sentence:",minLen)
+print("Maximum Length of sentence:",maxLen)
